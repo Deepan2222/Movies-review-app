@@ -7,19 +7,16 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "reviews")
-public class Review {
+@Document(collection = "users")
+public class User {
     @Id
     private ObjectId id;
 
-    private String movieId; // the movie this review belongs to
-
-    // Map of userId -> review text
-    private Map<String, String> userReviews = new HashMap<>();
+    private String username;
+    private String email;
+    private String password; // will be hashed
+    private String role; // "USER" or "ADMIN"
 }

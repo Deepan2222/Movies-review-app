@@ -17,11 +17,16 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Review> addReview(@RequestBody Map<String, String> payload) {
+        String imdbId = payload.get("imdbId");
+        String userId = payload.get("userId");       // 👈 must be passed from frontend
+        String reviewText = payload.get("reviewText");
+
         return new ResponseEntity<>(
-                reviewService.createReview(payload.get("reviewBody"), payload.get("imdbId")),
+                reviewService.addUserReview(imdbId, userId, reviewText),
                 HttpStatus.OK
         );
     }
 }
+
