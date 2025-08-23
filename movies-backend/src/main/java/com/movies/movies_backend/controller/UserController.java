@@ -31,5 +31,11 @@ public class UserController {
         return "Welcome Home!";
     }
 
+    @GetMapping("/api/v1/user/userId")
+    public ResponseEntity<String> getUserIdByEmail(@RequestParam String email) {
+        return userService.findByEmail(email)
+                .map(user -> ResponseEntity.ok(user.getId().toHexString())) // convert ObjectId to string
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
 

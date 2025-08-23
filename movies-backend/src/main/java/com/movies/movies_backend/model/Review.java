@@ -7,7 +7,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -20,6 +22,6 @@ public class Review {
 
     private String movieId; // the movie this review belongs to
 
-    // Map of userId -> review text
-    private Map<String, String> userReviews = new HashMap<>();
+    // Map of userId -> [reviewText, rating]
+    private Map<String, List<Object>> userReviews = new HashMap<>();
 }
